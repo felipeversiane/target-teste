@@ -13,7 +13,6 @@ type Revenue struct {
 	Value float64 `json:"value"`
 }
 
-/* Faça a validação do jeito que preferir e do que preferir */
 func validate(revenues []Revenue) error {
 	for _, r := range revenues {
 		if r.Value < 0 {
@@ -41,6 +40,7 @@ func main() {
 
 	byteValue, _ := io.ReadAll(file)
 	var revenues []Revenue
+
 	if err := json.Unmarshal(byteValue, &revenues); err != nil {
 		log.Fatalf("Erro ao descompactar o arquivo: %v", err)
 	}
@@ -74,6 +74,7 @@ func main() {
 	average := sum / float64(daysWithRevenue)
 
 	var aboveAverageDetails []Revenue
+
 	for _, r := range revenues {
 		if r.Value > average {
 			aboveAverageDetails = append(aboveAverageDetails, r)
